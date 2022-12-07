@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2021-2022 Intel Corporation
+    Copyright (c) 2021-2023 Intel Corporation
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -143,7 +143,9 @@ void strict_test() {
 //! \brief \ref error_guessing
 TEST_CASE("Threads respect task affinity") {
     task_affinity_retention::relaxed_test();
+#if !__TBB_TEST_TCM
     task_affinity_retention::strict_test();
+#endif
 }
 
 template <typename Range>
